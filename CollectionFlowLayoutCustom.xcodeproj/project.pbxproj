@@ -16,6 +16,8 @@
 		2760613624FFA3B10022640E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2760613524FFA3B10022640E /* main.m */; };
 		2760614024FFA3B10022640E /* CollectionFlowLayoutCustomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2760613F24FFA3B10022640E /* CollectionFlowLayoutCustomTests.m */; };
 		2760614B24FFA3B10022640E /* CollectionFlowLayoutCustomUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2760614A24FFA3B10022640E /* CollectionFlowLayoutCustomUITests.m */; };
+		2760615C24FFA3D30022640E /* RootCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2760615824FFA3D20022640E /* RootCollectionViewCell.m */; };
+		2760615D24FFA3D30022640E /* RootViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2760615A24FFA3D30022640E /* RootViewFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		2760614624FFA3B10022640E /* CollectionFlowLayoutCustomUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollectionFlowLayoutCustomUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2760614A24FFA3B10022640E /* CollectionFlowLayoutCustomUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionFlowLayoutCustomUITests.m; sourceTree = "<group>"; };
 		2760614C24FFA3B10022640E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2760615824FFA3D20022640E /* RootCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootCollectionViewCell.m; sourceTree = "<group>"; };
+		2760615924FFA3D30022640E /* RootCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootCollectionViewCell.h; sourceTree = "<group>"; };
+		2760615A24FFA3D30022640E /* RootViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewFlowLayout.m; sourceTree = "<group>"; };
+		2760615B24FFA3D30022640E /* RootViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewFlowLayout.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,10 @@
 				2760612724FFA3AF0022640E /* SceneDelegate.m */,
 				2760612924FFA3AF0022640E /* ViewController.h */,
 				2760612A24FFA3AF0022640E /* ViewController.m */,
+				2760615924FFA3D30022640E /* RootCollectionViewCell.h */,
+				2760615824FFA3D20022640E /* RootCollectionViewCell.m */,
+				2760615B24FFA3D30022640E /* RootViewFlowLayout.h */,
+				2760615A24FFA3D30022640E /* RootViewFlowLayout.m */,
 				2760612C24FFA3AF0022640E /* Main.storyboard */,
 				2760612F24FFA3B10022640E /* Assets.xcassets */,
 				2760613124FFA3B10022640E /* LaunchScreen.storyboard */,
@@ -269,7 +279,9 @@
 			files = (
 				2760612B24FFA3AF0022640E /* ViewController.m in Sources */,
 				2760612524FFA3AF0022640E /* AppDelegate.m in Sources */,
+				2760615D24FFA3D30022640E /* RootViewFlowLayout.m in Sources */,
 				2760613624FFA3B10022640E /* main.m in Sources */,
+				2760615C24FFA3D30022640E /* RootCollectionViewCell.m in Sources */,
 				2760612824FFA3AF0022640E /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +454,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MLJA65Q2JF;
 				INFOPLIST_FILE = CollectionFlowLayoutCustom/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MLJA65Q2JF;
 				INFOPLIST_FILE = CollectionFlowLayoutCustom/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
