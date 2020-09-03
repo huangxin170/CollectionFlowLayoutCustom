@@ -104,7 +104,10 @@
         }
         CGFloat x = self.edg.left;
         CGFloat y = [self.cellHeightDic[maxIndex] floatValue] + self.edg.bottom;
-        headerAttri.frame = CGRectMake(x, y, headerSize.width - self.edg.left - self.edg.right, headerSize.height);
+        if (headerSize.width == [UIScreen mainScreen].bounds.size.width) {
+            headerSize.width = headerSize.width - self.edg.left - self.edg.right;
+        }
+        headerAttri.frame = CGRectMake(x, y, headerSize.width, headerSize.height);
         //更新所有列的高度
         for (int i = 0; i < self.colum; i ++) {
             [self.cellHeightDic setValue:@(y + headerSize.height) forKey:[NSString stringWithFormat:@"%d",i]];
