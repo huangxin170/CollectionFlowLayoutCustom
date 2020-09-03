@@ -64,7 +64,7 @@
     CGFloat h = self.edg.top;
     //获取item高度
     if ([self.delegate respondsToSelector:@selector(collectionViewWithItemHeightIndex:)]) {
-        h = [self.delegate collectionViewWithItemHeightIndex:indexPath.row];
+        h = [self.delegate collectionViewWithItemHeightIndex:indexPath];
     }
     
     CGFloat x = self.edg.left + [minColum intValue]* (self.interSpacing + w);
@@ -104,7 +104,7 @@
         }
         CGFloat x = self.edg.left;
         CGFloat y = [self.cellHeightDic[maxIndex] floatValue] + self.edg.bottom;
-        headerAttri.frame = CGRectMake(x, y, headerSize.width, headerSize.height);
+        headerAttri.frame = CGRectMake(x, y, headerSize.width - self.edg.left - self.edg.right, headerSize.height);
         //更新所有列的高度
         for (int i = 0; i < self.colum; i ++) {
             [self.cellHeightDic setValue:@(y + headerSize.height) forKey:[NSString stringWithFormat:@"%d",i]];
@@ -121,7 +121,7 @@
         }
         CGFloat x = self.edg.left;
         CGFloat y = [self.cellHeightDic[maxIndex] floatValue] + self.edg.bottom;
-        footerAttri.frame = CGRectMake(x, y, footerSize.width, footerSize.height);
+        footerAttri.frame = CGRectMake(x, y, footerSize.width - self.edg.left - self.edg.right, footerSize.height);
         //更新所有列的高度
         for (int i = 0; i < self.colum;  i ++) {
             [self.cellHeightDic setValue:@(y + footerSize.height) forKey:[NSString stringWithFormat:@"%d",i]];

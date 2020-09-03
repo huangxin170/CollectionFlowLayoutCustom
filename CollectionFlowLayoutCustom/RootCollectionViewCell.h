@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class DataModel;
 @interface RootCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic , strong) UILabel * titleLabel;
+
+@property (nonatomic , strong) UIImageView * headerImageView;
+
+@property (nonatomic , strong) DataModel * model;
+
 
 @end
 

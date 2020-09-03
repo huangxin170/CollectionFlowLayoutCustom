@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "RootViewFlowLayout.h"
 #import "RootCollectionViewCell.h"
+#import "DataModel.h"
+#import "HeaderCollectionReusableView.h"
 @interface ViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,RootViewFlowLayoutDelegate>
 @property (nonatomic , strong) UICollectionView * collectionView;
 
@@ -21,6 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self creatUI];
+    [self creatData];
+    
+}
+-(void)creatUI{
     RootViewFlowLayout * flow = [[RootViewFlowLayout alloc]init];
     flow.lineSpacing = 10;
     flow.interSpacing = 10;
@@ -35,49 +42,62 @@
     [self.view addSubview:self.collectionView];
     
     [self.collectionView registerClass:[RootCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
-    
-    for (int i = 0; i < 100; i ++) {
-        CGFloat height = arc4random()%100;
-        [self.dataArray addObject:@(height > 20 ? height : 20)];
+    [self.collectionView registerClass:[HeaderCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+    [self.collectionView registerClass:[HeaderCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
+}
+-(void)creatData{
+    for (int sectionIndex = 0; sectionIndex < 3; sectionIndex ++ ) {
+        NSMutableArray * itemArray = [[NSMutableArray alloc]init];
+        for (int i = 0; i < 50; i ++) {
+               CGFloat height = arc4random()%100;
+               DataModel * model = [[DataModel alloc]init];
+               model.color = [UIColor colorWithRed:arc4random()%255 / 255.0 green:arc4random()%255 / 255.0 blue:arc4random()%255 / 255.0 alpha:1];
+               model.title = [NSString stringWithFormat:@"第%d区的%d个数据",sectionIndex,i];
+               model.height = height;
+               [itemArray addObject:model];
+           }
+        [self.dataArray addObject:itemArray];
     }
+   
     [self.collectionView reloadData];
-    
 }
 #pragma mark delegate
--(CGFloat)collectionViewWithItemHeightIndex:(NSInteger)index{
-    return [self.dataArray[index] floatValue];
+-(CGFloat)collectionViewWithItemHeightIndex:(NSIndexPath *)indexPath{
+    DataModel * model = self.dataArray[indexPath.section][indexPath.row];
+    return model.height;
 }
 -(CGSize)collectionViewWithHeaderSizeIndex:(NSInteger)index{
-    return CGSizeMake(100, 50);
+    return CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
 }
 -(CGSize)collectionViewWithFooterSizeIndex:(NSInteger)index{
-    return CGSizeMake(200, 30);
+    return CGSizeMake([UIScreen mainScreen].bounds.size.width, 30);
 }
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 3;
+    return self.dataArray.count;
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return [self.dataArray[section] count];
 }
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     RootCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:arc4random()%255 / 255.0 green:arc4random()%255 / 255.0 blue:arc4random()%255 / 255.0 alpha:1];
-    cell.titleLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    
+    cell.model = self.dataArray[indexPath.section][indexPath.row];
+    
     return cell;
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        UICollectionReusableView * view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
-        view.backgroundColor = [UIColor redColor];
+        HeaderCollectionReusableView * view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
+        view.titleLabel.text = [NSString stringWithFormat:@"这是第%ld个区头",indexPath.section];
+        view.backgroundColor = [UIColor blackColor];
         return view;
     }else{
-        UICollectionReusableView * view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer" forIndexPath:indexPath];
-        view.backgroundColor = [UIColor yellowColor];
+        HeaderCollectionReusableView * view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer" forIndexPath:indexPath];
+        view.titleLabel.text = [NSString stringWithFormat:@"这是第%ld个区尾",indexPath.section];
+        view.backgroundColor = [UIColor lightGrayColor];
         return view;
     }
 }

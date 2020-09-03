@@ -7,21 +7,47 @@
 //
 
 #import "RootCollectionViewCell.h"
+#import "DataModel.h"
 
 @implementation RootCollectionViewCell
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self == [super initWithFrame:frame]) {
-        [self creatCell];
+        [self creatCellAlloc];
+        [self creatCellUI];
     }
     return self;
 }
 
--(void)creatCell{
-    self.titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 50, 20)];
-    self.titleLabel.textColor = [UIColor blackColor];
+-(void)setModel:(DataModel *)model{
+    self.headerImageView.backgroundColor = model.color;
+    self.titleLabel.text = model.title;
+}
+-(void)creatCellAlloc{
+    
+    self.headerImageView  = [[UIImageView alloc]init];
+    [self.contentView addSubview:self.headerImageView];
+    
+    self.titleLabel = [[UILabel alloc]init];
+    self.titleLabel.textColor = [UIColor whiteColor];
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
-    [self.contentView addSubview:self.titleLabel];
+    self.titleLabel.font = [UIFont systemFontOfSize:13];
+    self.titleLabel.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.headerImageView addSubview:self.titleLabel];
+    
+}
+-(void)creatCellUI{
+    
+    [self.headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.headerImageView.superview);
+    }];
+    
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.mas_equalTo(self.titleLabel.superview);
+        make.height.mas_equalTo(20);
+    }];
+    
 }
 
 @end

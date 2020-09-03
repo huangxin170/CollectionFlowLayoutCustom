@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_CollectionFlowLayoutCustom_CollectionFlowLayoutCustomUITests : NSObject
+@end
+@implementation PodsDummy_Pods_CollectionFlowLayoutCustom_CollectionFlowLayoutCustomUITests
+@end

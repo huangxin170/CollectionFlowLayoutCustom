@@ -1,0 +1,6 @@
+framework module Pods_CollectionFlowLayoutCustom_CollectionFlowLayoutCustomUITests {
+  umbrella header "Pods-CollectionFlowLayoutCustom-CollectionFlowLayoutCustomUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

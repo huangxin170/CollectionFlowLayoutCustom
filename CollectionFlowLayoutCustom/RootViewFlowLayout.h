@@ -13,8 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol RootViewFlowLayoutDelegate <NSObject>
 
 /// 获取外部高度
-/// @param index index description
--(CGFloat)collectionViewWithItemHeightIndex:(NSInteger)index;
+/// @param indexPath index description
+-(CGFloat)collectionViewWithItemHeightIndex:(NSIndexPath *)indexPath;
 
 /// 获取外部头高度
 /// @param index index description
